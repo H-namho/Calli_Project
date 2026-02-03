@@ -159,7 +159,7 @@ public class CreditService {
 
 		    Page<CreditEntity> creditPage = creditRepository.findByUser_UserId(userId, pageable); 
 
-	        // ✅ 3) Page의 content(현재 페이지 데이터)만 꺼내기
+	        //   Page의 현재 페이지 데이터만 꺼내기
 	        List<CreditEntity> entities = creditPage.getContent();
 	        List<CreditResponseDto> list = new ArrayList<>();
 	        for(CreditEntity c : entities) {
@@ -171,7 +171,7 @@ public class CreditService {
 	        	list.add(dto);
 	        }
 	        
-	        // ✅ 5) 프론트가 페이징 UI 만들 수 있도록 "메타 + content"로 묶어서 반환
+	        //
 	        ShowPageDto<CreditResponseDto> result = new ShowPageDto<>(
 	                list,
 	                creditPage.getNumber(),         // 현재 페이지 번호(0부터)
@@ -181,10 +181,8 @@ public class CreditService {
 	                creditPage.isFirst(),           // 첫 페이지인가?
 	                creditPage.isLast()             // 마지막 페이지인가?
 	        );
-		
 	        return result;
-		
-		
+			
 	}
 	
 }
